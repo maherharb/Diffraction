@@ -5,7 +5,7 @@ Collection of MATLAB scripts for modeling of interaction between crystals and x-
 
 - Modeling of various diffraction geometries such as coplanar symmetric diffraction, coplanar asymmetric diffraction, and non-coplanar diffraction.
 
-- Simulating geometrical diffraction pattern such as the one shown below for grazing incidence x-ray diffraction off a graphite crystal. 
+- Simulating geometrical diffraction patterns such as the one shown below for grazing incidence x-ray diffraction off a graphite crystal. 
 
 
 ![sample_xrd_pattern.](sample_xrd_pattern.png)
