@@ -1,0 +1,10 @@
+function W = GetAtomicMass(Z)
+
+W = zeros(size(Z));
+load('AtomicWeights');
+
+for i=1:size(Z,2)
+    W(1,i) = AW(Z(1,i),2);
+end
+
+end

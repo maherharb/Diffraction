@@ -1,0 +1,54 @@
+% XRAYSCATTERINGFACTORS Calculate the x-ray scattering factors based on
+% relativistic Hartree-fock calculation by P.A. Doyle and P.S. Turner, Acta
+% Cryst. A24, 390 (1968); and (optional) Plot the scattering factors vs.
+% scattering vector.
+%
+% XRAYSCATTERINGFACTORS(Z, s, FIGNUM)
+%        Z: Atomic number of the element
+%        S: The scattering vector defined as 2sin(theta)/lambda
+%   FIGNUM: (optional) Figure number in which to plot the anomalous scattering factors
+%
+% Multiple calculations can be made at once by providing an array of atomic
+% numbers Z, and an array of scattering vectors S. In that case, the
+% function returns a matrix where columns correspond to atomic numbers and
+% rows to scattering vectors (see example 1).
+%
+% If S is a 2 element vector, the calculation is made for 501 points
+% within the range specified by S (see example 2).
+%
+% Example 1 (anomalous scattering factors for silicon and oxygen):
+%   [sf1 sf2] = XrayAnomalousFactors([14 8], [1000 5000 10000 20000])
+%
+% Example 2 (anomalous scattering factors for carbon):
+%   [sf1 sf2] = XrayAnomalousFactors(6, [1000 30000], 1)
+%
+% Last update: 06-03-2011, Maher Harb
+% Relativistic Hartree-fock X-ray and electron scattering Factors, P.A.
+% Doyle and P.S. Turner, Acta Cryst. (1968). A24, 390
+
+function f = XrayScatteringFactors(Z, s, FigNum)
+
+
+
+if nargin<2
+    error('Insufficient number of inputs. You should supply the Scattering vector and the Atomic number. e.g. ScatteringFactor(1.02, 6)');
+end
+
+if size(s,2)>
+
+s = s/2; % Doyleand Turner define s as sin(theta)/lambda
+
+% a1 b1 a2 b2 a3 b3 a4 b4 c
+Params = zeros(92,9); % x-rays
+Params(6,:)  = [2.3100 20.8439 1.0200 10.2075 1.5886 0.5687 0.8650 51.6512 0.2156];  % Carbon
+Params(8,:)  = [3.0485 13.2771 2.2868 5.7011 1.5463 0.3239 0.8670 32.9089 0.2508];  % Oxygen
+Params(23,:)  = [10.297 6.866 7.351 0.438 2.070 26.894 2.057 102.478 1.220];  % Vanadium
+Params(32,:)  = [16.0816 2.8509 6.3747 0.2516 3.7068 11.4468 3.6830 54.7625 2.1313]; % needs rechecking from paper copy % Germanium
+
+f = ones(length(s),length(Z));
+for j=1:length(Z)
+    f(:,j) = f(:,j)*Params(Z(j),9); % c
+    for i=1:2:7
+        f(:,j) = f(:,j) + Params(Z(j),i)*exp(-Params(Z(j),i+1)*s.^2);
+    end
+end

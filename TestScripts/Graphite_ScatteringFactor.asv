@@ -1,0 +1,28 @@
+clear 
+
+% DEPENDENCIES
+addpath(genpath('C:\Users\maher\Documents\DIFFWIZ\'))
+
+% DEFINE YOUR LATTICE
+Lattice.Symbol = 'C'; % 
+Lattice.Type = 'hexagonal';
+Lattice.a = 2.456;
+Lattice.c = 6.696; 
+Lattice.AtomicPositions = [0 0 0; 0 0 1/2; 1/3 2/3 0; 2/3 1/3 1/2]; % along the lattice vectors
+
+% DEFINE YOUR CRYSTAL
+Crystal.Reflection = [1 0 1];
+
+% DEFINE YOUR PROBE
+Probe.Type = 'xrays';
+Probe.Energy = 4000
+[Result Lattice Crystal] = StructureFactor(Lattice, Crystal);
+
+Energy = linspace(4000,8000);
+f = XrayScatteringFactor(Result.ScatteringVector, Lattice.Z, Energy);
+
+subplot(1,2,1)
+plot(Energy, real(f))
+
+subplot(1,2,2)
+plot(Energy, imag(f))

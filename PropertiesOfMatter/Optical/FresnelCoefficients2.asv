@@ -1,0 +1,7 @@
+function [rs rp] = FresnelCoefficients2(n1, n2, theta) % theta is in rad
+
+n = n2/n1;
+
+
+rs=(cos(theta)-sqrt(real(n2)^2/-sin(theta).^2))./(cos(theta)+sqrt(n^2-sin(theta).^2));
+rp=(-n^2*cos(theta)+sqrt(n^2-sin(theta).^2))./(n^2*cos(theta)+sqrt(n^2-sin(theta).^2));

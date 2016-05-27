@@ -1,0 +1,19 @@
+function E = Wavelength2Energy(lambda, m)
+
+    SPEED_LIGHT = 299792458; % speed of light [m]
+    ELEMENTARY_CHARGE = 1.6e-19; %
+    PLANCK = 6.626068e-34; % h [J]
+
+    if nargin<2 % x-ray, light
+         E = PLANCK*SPEED_LIGHT./lambda/ELEMENTARY_CHARGE; % [m]
+    else % matter
+         Momentum = PLANCK/lambda ;
+            E = Sqrt(ELECTRON_MASS ^ 2 * SPEED_OF_LIGHT ^ 4 + Momentum ^ 2 * SPEED_OF_LIGHT ^ 2) - ELECTRON_MASS * SPEED_OF_LIGHT ^ 2 / ELEMENTARY_CHARGE
+
+            
+         Gamma = E*ELEMENTARY_CHARGE/(m*SPEED_LIGHT^2)+1;
+         Velocity = sqrt(1-1/(Gamma^2))*SPEED_LIGHT;
+        lambda = PLANCK/(Gamma*Velocity*m);
+    end
+    
+end

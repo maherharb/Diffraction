@@ -1,0 +1,30 @@
+function Y = ThinFilmReflectivity(Symbol1,  Density1, Thickness1, Symbol2,  Density2, alpha, Fign) 
+
+Y = zeros(size(X,1));
+
+n_film = XrayIndexOfRefraction('C', params(3), 18000);
+n_substrate = XrayIndexOfRefraction('Si', 2.33, 18000);
+
+n_film = 1-n_film(2)-1i*n_film(3);
+n_substrate = 1-n_substrate(2)-1i*n_substrate(3);
+
+x2 = pi/2-X*pi/180 - params(1);
+x1 =  asin(sin(x2)*real(1)/real(n_film));
+
+n2 = n_film/1;
+n1 = n_substrate/n_film;
+
+lambda = Energy2lambda(18000);
+K = 2*pi/lambda;
+
+%[rs2 rp2] = FresnelCoefficients(n2, x2);
+%[rs1 rp1] = FresnelCoefficients(n1, x1);
+
+[rs2 rp2] = FresnelCoefficients2(1, n_film, x2);
+[rs1 rp1] = FresnelCoefficients2(n_film,n_substrate, x1);
+
+r2 = rs2;
+r1 = rs1;
+
+Y = params(4) + params(2)*abs((r2+r1.*exp(-1i*2*K*n1*cos(x1)*46e-9))./(1+r1.*r2.*exp(-1i*2*K*n1*cos(x1)*46e-9))).^2;
+

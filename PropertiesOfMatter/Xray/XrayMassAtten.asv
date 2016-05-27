@@ -1,0 +1,36 @@
+%
+
+function [ma1 ma2] = XrayMassAtten(Z, Energy)
+
+path(path,'XrayMassAttenuation') % Unix
+
+load(strcat('xray_massatten_', num2str(Z), '.mat'));
+ma(:,1) = ma(:,1)*1e6; % eV 
+
+ma1=zeros(size(Energy,2),1);
+ma2=zeros(size(Energy,2),1);
+
+ind0 = find(ma(:,1)>Energy(1),1);
+
+for j=1:size(Energy,2)
+    E = Energy(j);
+    ind = find(ma(:,1)>E,1);
+
+    if (size(ind,1) == 0) % higher than the highest energy
+        ma1(j) = ma(size(ma,1),2);
+        ma2(j) = ma(size(ma,1),3);
+    else
+       if ind==1 % lower than the lowest energy
+           ma1(j) = ma(1,2);
+           ma2(j) = ma(1,3);
+       else % within the dataset
+           ma1(j) = (ma(ind,2)-ma(ind-1,2))/(ma(ind,1)-ma(ind-1,1))*(E-ma(ind-1,1)) + ma(ind-1,2); % linear interpolation
+           ma2(j) = (ma(ind,3)-ma(ind-1,3))/(ma(ind,1)-ma(ind-1,1))*(E-ma(ind-1,1)) + ma(ind-1,3); % linear interpolation
+       end
+    end
+
+end
+
+plot(ma(:ind,1),ma(:ind,2),'o')
+hold on
+plot(Energy,ma1)
