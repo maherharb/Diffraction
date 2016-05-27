@@ -7,6 +7,7 @@ Collection of MATLAB scripts for modeling of interaction between crystals and x-
 
 - Simulating geometrical diffraction pattern such as the one shown below for grazing incidence x-ray diffraction off a graphite crystal. 
 
+<div class="centered">
 ![sample_xrd_pattern.](sample_xrd_pattern.png)
-
+</div>
 
