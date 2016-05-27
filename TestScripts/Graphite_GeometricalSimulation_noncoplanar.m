@@ -4,7 +4,7 @@ clear
 close all
 
 % PATH TO DIFFWIZ LIBRARY
-addpath(genpath('C:\Users\maher\Dropbox\Physics\lund\DIFFWIZ\'))
+addpath(genpath('C:\Users\maher\Google drive\DIFFWIZ\'))
 
 % DEFINE YOUR LATTICE OR LOAD LATTICE FROM EXISTING STRUCTURE LIBRARY
 load graphite.mat
@@ -23,9 +23,9 @@ Detector.Size = 102; % diameter or length
 Detector.SpotFWHMx = 3;
 Detector.SpotFWHMy = 3;
 Detector.DistanceToSample = 50; % sample-detector distance 40-400
-Detector.Offset = [0 0]; % offset from center of beam 
+Detector.Offset = [0 40]; % offset from center of beam 
 
-hkl = [0:5];
+hkl = [0:8];
 
 I = GeometricalSimulation1(Lattice, Probe, Detector, hkl, 1);
 

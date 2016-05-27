@@ -105,6 +105,8 @@ if nargin>4 % plot result
        
     imagesc(I)
       title('Diffraction pattern')
+      set(gca,'xtick',[])
+      set(gca,'ytick',[])
 end
 
 end
