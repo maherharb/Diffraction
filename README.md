@@ -10,3 +10,4 @@ Collection of MATLAB scripts for modeling of interaction between crystals and x-
 
 ![sample_xrd_pattern.](sample_xrd_pattern.png)
 
+Note: The simulation shown above was generated using the script TestScripts/Graphite_GeometricalSimulation_noncoplanar.m 
