@@ -16,7 +16,7 @@ end
 
 if nargin>4 % plot result
     figure(FigNum)
-    subplot(1,2,1)
+    subplot(2,1,1)
     %  hold off
     plot(0-Detector.Offset(1), -dy-Detector.Offset(2), 'o', 'LineWidth', 2)
     hold on
@@ -35,20 +35,23 @@ for k = hkl_space
             if SF.BraggAngle<SF.AssymAngle
 
                 Result = NonCoplanarDiffraction(SF.BraggAngle, Probe.psi, SF.CrystalNormal, SF.ReflectionNormal); %% && Result.ReflectedSpherical(2)<=90
-                theta = -(Result.IncidentSpherical(1)-Result.ReflectedSpherical(1));
+                theta = Result.IncidentSpherical(1)-Result.ReflectedSpherical(1);
                 if abs(theta)<=90    && SF.Intensity > 1e-10
                     theta=theta*pi/180;
                     psi = 90-Result.ReflectedSpherical(2);
                     psi = psi*pi/180;
                     
+  %                  x = Detector.DistanceToSample*tan(theta);
+  %                  y = (Detector.DistanceToSample/cos(theta))*tan(psi);
+                    
                     x = Detector.DistanceToSample*tan(theta);
-                    y = (Detector.DistanceToSample/cos(theta))*tan(psi);
-                   
+                    y = (Detector.DistanceToSample)*tan(psi);
+                    
                     x = round(x*10)/10;
                     y = round(y*10)/10;
                     if imag(SF.BraggAngle)==0 && imag(theta)==0 && imag(psi)==0
                         
-                        if (strcmpi(Detector.Shape, 'square')==1 && abs(x)<Detector.Size/2 && y<=(Detector.Size/2+Detector.Offset(2)) && y>=(0)) || (strcmpi(Detector.Shape, 'circle')==1 && (x^2+y^2)<(Detector.Size/2)^2)
+                        if (strcmpi(Detector.Shape, 'square')==1 && abs(x)<Detector.Size/2 && abs(y)<Detector.Size/2+Detector.Offset(2)) || (strcmpi(Detector.Shape, 'circle')==1 && (x^2+y^2)<(Detector.Size/2)^2)
                             %[h k l]
                             pix_r = floor((y/Detector.Size+0.5)*size(I,1)+0.5-Detector.Offset(2)*PixelsPerUnit);
                             pix_c = floor((x/Detector.Size+0.5)*size(I,2)+0.5-Detector.Offset(1)*PixelsPerUnit);
@@ -102,7 +105,7 @@ if nargin>4 % plot result
     ylabel('detector y coordinate [mm]')
     % title(strcat(['sample-detector distance = ', num2str(Detector.DistanceToSample), ' mm, detector size = ', num2str(Detector.Size), ' mm, vertical offset = ', num2str(Detector.Offset(2)), ' mm']))
      title('Labels of diffraction spots')
-    subplot(1,2,2)
+    subplot(2,1,2)
     hold off
        
     imagesc(I)

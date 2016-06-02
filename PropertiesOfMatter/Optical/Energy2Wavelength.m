@@ -1,8 +1,8 @@
 function lambda = Energy2Wavelength(E, m)
 
     SPEED_LIGHT = 299792458; % speed of light [m]
-    ELEMENTARY_CHARGE = 1.6e-19; %
-    PLANCK = 6.626068e-34; % h [J]
+    ELEMENTARY_CHARGE = 1.60217662e-19; %
+    PLANCK = 6.626070040e-34; % h [J]
 
     if nargin<2 % x-ray, light
          lambda = PLANCK*SPEED_LIGHT./E/ELEMENTARY_CHARGE; % [m]

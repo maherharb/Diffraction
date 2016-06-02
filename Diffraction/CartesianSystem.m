@@ -29,8 +29,8 @@ switch lower(Lattice.Type)
         Lattice.Vc = (Lattice.a*Lattice.b*Lattice.c)*1e-30;
                 
     case 'hexagonal'
-        %Lattice.LatticeVectors = [Lattice.a 0 0; -sin(pi/6)*Lattice.a cos(pi/6)*Lattice.a 0; 0 0 Lattice.c];
-        Lattice.LatticeVectors = [Lattice.a*sin(pi/6) -cos(pi/6)*Lattice.a 0; Lattice.a*sin(pi/6) cos(pi/6)*Lattice.a 0; 0 0 Lattice.c];
+        Lattice.LatticeVectors = [Lattice.a 0 0; -sin(pi/6)*Lattice.a cos(pi/6)*Lattice.a 0; 0 0 Lattice.c];
+        %Lattice.LatticeVectors = [Lattice.a*sin(pi/6) -cos(pi/6)*Lattice.a 0; Lattice.a*sin(pi/6) cos(pi/6)*Lattice.a 0; 0 0 Lattice.c];
         Lattice.Vc = sqrt(3)*Lattice.a^2*Lattice.c*1e-30/2; % unit cell volume = hexagon volume/3
                 
     case 'rhombohedral'
