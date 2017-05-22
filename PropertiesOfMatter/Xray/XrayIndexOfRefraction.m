@@ -84,8 +84,8 @@ if nargin>3 && length(EnergyOrWavelength)>1 % plot result
         semilogy(EnergyOrWavelength/1000, n(:,1), PltClr);
         hold on
         xlabel('Energy (KeV)')
-        ylabel('delta')
-        title('n = (1-delta) - i (beta)')
+        ylabel('\delta')
+        title('n = (1-\delta) - i (\beta)')
         legend(l_text, Symbol)
         box on;
         
@@ -94,8 +94,8 @@ if nargin>3 && length(EnergyOrWavelength)>1 % plot result
         semilogy(EnergyOrWavelength/1000, n(:,2), PltClr);
         hold on
         xlabel('Energy (KeV)')
-        ylabel('beta')
-        title('n = (1-delta) - i (beta)')
+        ylabel('\beta')
+        title('n = (1-\delta) - i (\beta)')
         legend(l_text, Symbol)
         box on;
         
@@ -105,8 +105,8 @@ if nargin>3 && length(EnergyOrWavelength)>1 % plot result
         hold on
         semilogy(EnergyOrWavelength, n(:,1), PltClr);
         xlabel(strcat(['Wavelength (', char(197), ')']))
-        ylabel('delta')
-        title('n = (1-delta) - i (beta)')
+        ylabel('\delta')
+        title('n = (1-\delta) - i (\beta)')
         legend(l_text, Symbol)
         box on;
         
@@ -115,8 +115,8 @@ if nargin>3 && length(EnergyOrWavelength)>1 % plot result
         hold on
         semilogy(EnergyOrWavelength, n(:,2), PltClr);
         xlabel(strcat(['Wavelength (', char(197), ')']))
-        ylabel('beta')
-        title('n = (1-delta) - i (beta)')
+        ylabel('\beta')
+        title('n = (1-\delta) - i (\beta)')
         legend(l_text, Symbol)
         box on;
     end

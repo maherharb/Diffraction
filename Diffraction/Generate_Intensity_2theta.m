@@ -38,7 +38,7 @@ function [Table]=Generate_Intensity_2theta(Lattice, Probe,FigNum,hkl,Threshold, 
 TypeOfFile=input('What kind of file extension do you want?\nOptions: nothing (press Enter), txt, xlsx, xls, dat, csv \n','s');
 
 
-MainData=zeros(10,4);
+MainData=zeros(1,6);
 countofdata=1;
 % Check for user input. Fill in if not input. 
 if nargin <4
@@ -78,8 +78,16 @@ end
 
 
 length=size(MainData,1);
-
-
+checked=false;
+for i=1:length
+    if MainData(i,5)>0
+        checked=true;
+    end
+end
+if checked==false
+    error('No Bragg angle above 0. Consider changing your parameters. Energy of X-rays might be too low.');
+end
+    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Sort everything by the Bragg angle.
@@ -189,11 +197,13 @@ for i=1:length
     
 end
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%% MATLAB based code
 %% Generating XRD plot with separation between the peaks based on user input or default.
-
+if exist('struct2table')== 2 % Checks if you have struct2table. This helps it to function in Octave
+    
 if nargin>2
     figure(FigNum+1)
 else % default
@@ -205,7 +215,7 @@ indexPlot=1;
 ArrayIndex=1;
 maxI=max(MainData(:,8));
 for angle=0:Separation:180
-    if (angle<MainData(countAngle,5))&& (angle+Separation>MainData(countAngle,5)&&countAngle<length-1)
+    if (angle<MainData(countAngle,5))&& (angle+Separation>MainData(countAngle,5)&&countAngle<length)
         % Collect data for the table.
         Table.h=MainData(countAngle,1); %h
         Table.k=MainData(countAngle,2); %k
@@ -215,8 +225,8 @@ for angle=0:Separation:180
         Table.Intensity=MainData(countAngle,8);
         Table.RelativeIntensity=Table.Intensity/maxI*100;
         Table.d=MainData(countAngle,6);
-        Table.TwoPi_Distance=2*pi/Table.d;
-        Table.d_r=1/Table.d;
+        Table.Q=2*pi/Table.d;
+        Table.S=1/Table.d;
         
         XRD_plot(indexPlot,1)=MainData(countAngle,5); %2theta
         XRD_plot(indexPlot,2)=MainData(countAngle,8); %Intensity of the actual point
@@ -293,4 +303,100 @@ elseif size(TypeOfFile,2)==3
         writetable(Table,strcat(NameOFile,'xls'));
     end
 else %default do nothing
+end
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Octave based code
+else
+    if nargin>2
+    figure(FigNum+1)
+else % default
+    figure
+end
+countAngle=1;
+XRD_plot=zeros(ceil(180/Separation+length),5);
+indexPlot=1;
+ArrayIndex=1;
+maxI=max(MainData(:,8));
+OutputMatrix=[];
+for angle=0:Separation:180
+    if (angle<MainData(countAngle,5))&& (angle+Separation>MainData(countAngle,5)&&countAngle<length-1)
+        % Collect data for the table.
+%         Table.h=MainData(countAngle,1); %h
+%         Table.k=MainData(countAngle,2); %k
+%         Table.l=MainData(countAngle,3); %l
+%         Table.BraggAngle=MainData(countAngle,5)/2;
+%         Table.TwoTheta=MainData(countAngle,5);
+%         Table.Intensity=MainData(countAngle,8);
+%         Table.RelativeIntensity=Table.Intensity/maxI*100;
+%         Table.d=MainData(countAngle,6);
+%         Table.TwoPi_Distance=2*pi/Table.d;
+%         Table.d_r=1/Table.d;
+        OutputMatrix(ArrayIndex,1)=MainData(countAngle,1);
+        OutputMatrix(ArrayIndex,2)=MainData(countAngle,2);
+        OutputMatrix(ArrayIndex,3)=MainData(countAngle,3);
+        OutputMatrix(ArrayIndex,4)=MainData(countAngle,5)/2;
+        OutputMatrix(ArrayIndex,5)=MainData(countAngle,5);
+        OutputMatrix(ArrayIndex,6)=MainData(countAngle,8);
+        OutputMatrix(ArrayIndex,7)=MainData(countAngle,8)/maxI*100;
+        OutputMatrix(ArrayIndex,8)=MainData(countAngle,6);
+        OutputMatrix(ArrayIndex,9)=2*pi/MainData(countAngle,6);
+        OutputMatrix(ArrayIndex,10)=1/MainData(countAngle,6);
+        XRD_plot(indexPlot,1)=MainData(countAngle,5); %2theta
+        XRD_plot(indexPlot,2)=MainData(countAngle,8); %Intensity of the actual point
+        indexPlot=indexPlot+1;
+        
+        if countAngle<length
+            while(MainData(countAngle+1,7)>1)
+                if countAngle<length-1
+                    countAngle=countAngle+1;
+                else
+                    countAngle=length;
+                    break;
+                end
+            end
+        end
+        
+%         Table.m=MainData(countAngle,7);
+%         Array(ArrayIndex)=Table;
+        OutputMatrix(ArrayIndex,11)=MainData(countAngle,7);
+        ArrayIndex=ArrayIndex+1;
+        if countAngle<length
+            if MainData(countAngle+1,5)-MainData(countAngle,5)<Separation
+                warning('The separation between some peaks is less than the Separation.\n Please decrease the value for Separation.');
+                display(MainData(countAngle,5));
+                display(MainData(countAngle+1,5));
+                display(MainData(countAngle,7));
+                display(MainData(countAngle+1,7));
+            end
+        end
+        if countAngle<length
+            countAngle=countAngle+1;
+        end
+        
+    else
+        XRD_plot(indexPlot,1)=angle; %Looping through the angles.
+        XRD_plot(indexPlot,2)=0; %No intensity
+        indexPlot=indexPlot+1;
+        
+    end
+end
+
+hold on;
+plot(XRD_plot(:,1),XRD_plot(:,2)*100/max(XRD_plot(:,2)),'-b','linewidth',1.5);
+xlabel('2\theta');
+ylabel('Intensity percent I/I_M_a_x');
+Title=strcat(Lattice.Symbol,'-',Lattice.Type,'- ',num2str(Probe.Energy),'eV');
+title(Title);
+axis([0 180 0 105]);
+hold on;
+
+legend('MATLAB');
+Table=OutputMatrix;
 end

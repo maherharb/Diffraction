@@ -27,7 +27,7 @@
 function f0 = XrayScatteringFactors(Z, s, FigNum)
 
 if nargin<2
-    error('Insufficient number of inputs. You should supply the Scattering vector and the Atomic number. e.g. ScatteringFactor(1.02, 6)');
+    error('Insufficient number of inputs. You should supply the Scattering vector and the Atomic number. e.g. ScatteringFactor(6, 1.02)');
 end
 
 if length(s)==2
@@ -51,14 +51,30 @@ for j=1:size(Z,2)
     end
 end
 
+% if nargin>2 && length(s)>1 % plot result
+%     figure(FigNum)
+%     hold on
+%     plot(2*s, f0)
+%     xlabel(strcat('Scattering vector (',char(197),'^-^1)'));
+%     ylabel('f_0')
+%     [~, ~, ~, l_text] = legend;
+%     for i=1:length(Z)
+%         
+%         legend('-DynamicLegend');
+%         legend(l_text, GetElementSymbol(Z(i)))
+%         [~, ~, ~, l_text] = legend;
+%     end
+% end
 if nargin>2 && length(s)>1 % plot result
     figure(FigNum)
-    hold off
-    plot(2*s, f0)
-    xlabel('Scattering vector (A^-^1)');
-    ylabel('f_0')
+    hold on
     for i=1:length(Z)
-        [~, ~, ~, l_text] = legend;
-        legend(l_text, GetElementSymbol(Z(i)))
+        plot(2*s,f0(:,i),'DisplayName',GetElementSymbol(Z(i)),'linewidth',1);
+        legend('-DynamicLegend');
     end
+    xlabel(strcat('Scattering vector (',char(197),'^-^1)'));
+    ylabel('f_0')
+    
+    
 end
+
