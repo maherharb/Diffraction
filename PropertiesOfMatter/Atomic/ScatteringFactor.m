@@ -19,7 +19,7 @@ s = s/2; % Doyleand Turner define s as sin(theta)/lambda
 
 m  = 9.109389754e-31; % electron mass
 c = 299792458; % speed of light
-q = 1.6e-19; % elementary  charge
+q = 1.60217662e-19; % elementary  charge
 
  % a1 b1 a2 b2 a3 b3 a4 b4 c
 Params{1}= zeros(92,9); % electrons
@@ -54,3 +54,4 @@ end
 if ind==1
    % f=f*((1000*55*q)/(m*c*c) + 1); % 55 kev
 end
+% See http://henke.lbl.gov/optical_constants/asf.html. Potentially useful.

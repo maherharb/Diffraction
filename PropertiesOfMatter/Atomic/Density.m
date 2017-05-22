@@ -31,7 +31,7 @@ function rho = Density(Lattice)
     
     if isfield(Lattice,'Z')==0 
         if isfield(Lattice,'Symbol')==1 
-            [Lattice.Z N] = ParseChemicalSymbol(Lattice.Symbol);
+            [Lattice.Z, N] = ParseChemicalSymbol(Lattice.Symbol);
             if length(Lattice.Z)>1 % molecule
                 Lattice.N = N;
             end
@@ -47,8 +47,10 @@ function rho = Density(Lattice)
     
     if length(Lattice.Z)==1
         rho = AMU*GetAtomicMass(Lattice.Z)*NumberOfAtoms/Lattice.Vc/1000; % [g/cm3] 
+    %Lattice.Vc
     else
         rho = AMU*sum(GetAtomicMass(Lattice.Z(Lattice.AtomicTypes)))/Lattice.Vc/1000; % [g/cm3]
+    %Lattice.Vc
     end
 
 end
