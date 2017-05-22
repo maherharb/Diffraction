@@ -18,26 +18,22 @@ Lattice.Normal = [0 0 1];
 % DEFINE X-RAYS
 Probe.Type = 'xrays';
 Probe.Energy = 8048.3; % [eV]
-Probe.DiffractionGeometry = 'noncoplanar';
-Probe.psi = 0.2; % This's the grazing angle
 
 % DEFINE DETECTOR
-Detector.Shape = 'square';
-Detector.Size = 50; % diameter or length in mm
-Detector.SpotFWHMx = 2; % Diffraction spot size on detector
-Detector.SpotFWHMy = 2;
-Detector.DistanceToSample = 50; % Sample-detector distance in mm
-Detector.Offset = [0 25]; % offset from center of beam in mm
+% Detector is not used for Powder Diffraction.
 
 % MILLER INDICES TO LOOP OVER 
-hkl = 0:10;
+hkl = 6;
+
+%Ignores all peaks which have intensities under 1.
+Threshold = 1;
+
+%Resolution between peaks.
+Separation = 0.1;
+
 
 % MAIN FUNCTION
-[I] = GeometricalSimulation1(Lattice, Probe, Detector, hkl, 1);
+I = Generate_Intensity_2theta(Lattice, Probe,1,hkl,Threshold, Separation)
 
-
-
-
-
-
-
+% For Ocatave Use
+% I = 

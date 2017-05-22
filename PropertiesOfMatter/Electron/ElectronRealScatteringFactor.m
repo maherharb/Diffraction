@@ -30,8 +30,8 @@ function f0 = ElectronRealScatteringFactor(Z, s, FigNum)
         figure(FigNum)
         hold off
         plot(2*s, f0);
-        xlabel('scattering vector = 2*sin(theta)/lambda [1/A]');
-        ylabel('f0')
+        xlabel('scattering vector = 2*sin(\theta)/\lambda [1/A]');
+        ylabel('f_0')
     end
 
 end

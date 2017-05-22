@@ -1,6 +1,6 @@
 function VisualizeCrystal(Lattice, Vol, FigNum)
 
-pltColor = 'rbgcmy';
+% pltColor = 'rbgcmy';
 
 if nargin<2
     Vol = [-5 5;-5 5;-5 5];
@@ -57,8 +57,13 @@ if exist('M')==1
             end
         end
     end
-
-
+    
+    Z=ParseChemicalSymbol(Lattice.Symbol);
+    Radii=GetAtomicRadius(Z);
+    Color=GetAtomicColor(Z);
+    AverageRadius=sum(Radii)/size(Z,2);
+    Rad=Radii/AverageRadius;
+    
     % Plotting the points (basis coordinates)
     figure(FigNum)
     hold off
@@ -67,13 +72,15 @@ if exist('M')==1
         if Type(i)<7
             p = Type(i);
         end
-        surf(rx+M(i,1), ry+M(i,2), rz+M(i,3),'FaceColor', pltColor(p),'EdgeColor','none');
+        
+        surf(Rad(p)*rx+M(i,1), Rad(p)*ry+M(i,2), Rad(p)*rz+M(i,3),'FaceColor', Color(p,1:3),'EdgeColor','none');
+%         surf(rx+M(i,1), ry+M(i,2), rz+M(i,3),'FaceColor', pltColor(p),'EdgeColor','none');
         view(10, 12)
         hold on;
     end
     camlight left; lighting phong;
     box on
-
+    
     for i=1:size(M,1)
         for j=1:size(M,1)
             if i~=j
@@ -84,45 +91,45 @@ if exist('M')==1
             end
         end
     end
-
+    
     camlight left; lighting phong;grid off,
     box on
-
+    
     str='';
-
     
     
-    if isfield(Lattice,'Z')==0 
-        [Lattice.Z N] = ParseChemicalSymbol(Lattice.Symbol);
-    end 
+    
+    if isfield(Lattice,'Z')==0
+        [Lattice.Z, N] = ParseChemicalSymbol(Lattice.Symbol);
+    end
     
     for i=1:size(Lattice.Z,2)
         clr = '';
         switch i
             case 1
-                 clr = 'red';
+                clr = 'red';
             case 2
-                 clr = 'blue';
+                clr = 'blue';
             case 3
-                 clr = 'green';
+                clr = 'green';
             case 4
-                 clr = 'cyan';
+                clr = 'cyan';
             case 5
-                 clr = 'magenta';
+                clr = 'magenta';
             case 6
-                 clr = 'yellow';
+                clr = 'yellow';
             case default
-                 clr = 'red';
+                clr = 'red';
         end
-
+        
         str = strcat([str, GetElementSymbol(Lattice.Z(i)), '=', clr, ', ']);
     end
-
-  %  title(strcat([str, ' nnd=',  num2str(bond_dist), ' A']))
-%  title('Graphite','FontSize', 18 )
+    
+    title(strcat([str, ' nnd=',  num2str(bond_dist), ' A']))
+    %  title('Graphite','FontSize', 18 )
     axis([Vol(1,1)-1 Vol(1,2)+1 Vol(2,1)-1 Vol(2,2)+1 Vol(3,1)-1 Vol(3,2)+1])
-     set(gca,'XTick',[])
+    set(gca,'XTick',[])
     set(gca,'YTick',[])
-     set(gca,'ZTick',[])
-set(gca,'visible','off')
+    set(gca,'ZTick',[])
+    set(gca,'visible','off')
 end

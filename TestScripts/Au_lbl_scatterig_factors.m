@@ -4,7 +4,8 @@ home
 
 D = load('lbl_C_scattering_factors.txt');
 % D = load('lbl_Au_scattering_factors.txt');
-sf = XrayComplexScatteringFactor2(6, [10:10:30000]');
+% sf = XrayComplexScatteringFactor2(6, [10:10:30000]');
+sf = XrayComplexScatteringFactor(6, [10:10:30000]');
 
 close all
 figure(1)
