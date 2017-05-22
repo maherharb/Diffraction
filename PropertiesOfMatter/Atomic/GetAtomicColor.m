@@ -1,5 +1,6 @@
 function C=GetAtomicColor(Z)
-
+% The color database was taken from the commercial software CrystalMaker 
+% CrystalMaker®: a crystal and molecular structures program for Mac and Windows. CrystalMaker Software Ltd, Oxford, England (www.crystalmaker.com)"
 if isnumeric(Z)==0
     error('Atomic number should be an integer between 1 and 92. Type "help GetAtomicMass" to learn more.')
 else

@@ -1,5 +1,6 @@
 % Relativistic Hartree-fock X-ray and electron scattering Factors, P.A.
 % Doyle and P.S. Turner, Acta Cryst. (1968). A24, 390
+% For X-ray, use XrayScatteringFactors.m
 
 function f = ScatteringFactor(s,Z,varargin)
 

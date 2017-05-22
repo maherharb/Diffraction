@@ -17,7 +17,7 @@ Lattice.Normal = [0 0 1];
 
 % DEFINE X-RAYS
 Probe.Type = 'xrays';
-Probe.Energy = 8048.3; % [eV]
+Probe.Energy = 29000; % [eV]
 
 % DEFINE DETECTOR
 % Detector is not used for Powder Diffraction.
