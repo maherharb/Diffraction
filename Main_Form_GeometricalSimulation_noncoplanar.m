@@ -33,7 +33,7 @@ Detector.Offset = [0 25]; % offset from center of beam in mm
 hkl = -6:6;
 
 % MAIN FUNCTION
-I = GeometricalSimulation1(Lattice, Probe, Detector, hkl, 1)
+[I,Result] = GeometricalSimulation1(Lattice, Probe, Detector, hkl, 1);
 
 
 
