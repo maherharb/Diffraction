@@ -70,16 +70,20 @@ end
 
 if nargin>2 && length(Energy)>1 % plot result
     figure(FigNum)
+    for i=1:length(Z)
     subplot(1,2,1)
-    plot(Energy/1000, sf1);
+    plot(Energy/1000, sf1(:,i),'DisplayName',GetElementSymbol(Z(i)),'linewidth',2); 
     hold on
     xlabel('Energy (KeV)');
     ylabel('f^''')
+    
     subplot(1,2,2)
-    plot(Energy/1000, sf2);
+    plot(Energy/1000, sf2(:,i),'DisplayName',GetElementSymbol(Z(i)),'linewidth',2);
     hold on
+    legend('-DynamicLegend','location','best');
     ylabel('f^''^''')
     xlabel('Energy (KeV)');
+    end
 end
 
 end
