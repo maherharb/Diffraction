@@ -23,17 +23,17 @@ Probe.psi = 0.2; % This's the grazing angle
 
 % DEFINE DETECTOR
 Detector.Shape = 'square';
-Detector.Size = 50; % diameter or length in mm
+Detector.Size = 40; % diameter or length in mm
 Detector.SpotFWHMx = 2; % Diffraction spot size on detector
 Detector.SpotFWHMy = 2;
 Detector.DistanceToSample = 50; % Sample-detector distance in mm
-Detector.Offset = [0 25]; % offset from center of beam in mm
+Detector.Offset = [0 20]; % offset from center of beam in mm
 
 % MILLER INDICES TO LOOP OVER 
-hkl = -6:6;
+hkl = 0:6;
 
 % MAIN FUNCTION
-I = GeometricalSimulation1(Lattice, Probe, Detector, hkl, 1)
+I = GeometricalSimulation1(Lattice, Probe, Detector, hkl, 1);
 
 
 

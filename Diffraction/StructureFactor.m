@@ -37,23 +37,8 @@
 %   Probe.Energy = 10000;
 %   StructureFactor(Lattice, Probe)
 % 
-% Example 3 :
-%     Lattice.Symbol='CrAlC';
-%     Lattice.Type='hexagonal';
-%     Lattice.a=2.8420;
-%     Lattice.c=12.6870;
-%     Lattice.AtomicPositions = [1/3 2/3 0.0847; 0.3333 0.6667 0.4153; 0.6667 0.3333 0.5847; 0.6667 0.3333 0.9153; 0.6667 0.3333 0.2500; 0.3333 0.6667 0.7500; 0 0 0; 0 0 0.5000];
-%     Lattice.Atomic
-%     Lattice.Reflection=[1 1 1];
-%     Lattice.Z=[24 13 6];
-%     Lattice.N=[4 2 2];
-%     Lattice.Normal=[0 0 1];
-%     Lattice.Vc=8.8744e-29;
-%     Probe.Type = 'xrays';
-%     Probe.Energy = 10000;
-% 
 %
-% Last update: 04-12-2017, Cosmin Popescu
+% Last update: 05-23-2017, Cosmin Popescu
 % Author: Maher Harb 04-11-2011
 
 
