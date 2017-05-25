@@ -45,7 +45,8 @@ switch lower(Lattice.Type)
         % alternative lattice vetors from http://books.google.se/books?id=zn-se2TKv3QC&pg=PA153&lpg=PA153&dq=rhombohedral+lattice+primitive+vectors&source=bl&ots=JkfbofnHW-&sig=SwgDebuZ_hM4-Yn19fI-DPhGCp0&hl=sv&ei=HhGFS7iQH42C_AbgktHHAg&sa=X&oi=book_result&ct=result&resnum=3&ved=0CBMQ6AEwAg#v=onepage&q=rhombohedral%20lattice%20primitive%20vectors&f=false
         Lattice.LatticeVectors =[a -a/sqrt(3) c;0 2*a/sqrt(3) c; -a -a/sqrt(3) c]/3;
 %         Lattice.Vc = a^3*sin(alpha)^2*sina*1e-30;
-        Lattice.Vc=a^3*sin(alpha)*sin(alpha/2)*sqrt(3-tan(alpha/2)^2)*1e-30;
+%         Lattice.Vc=a^3*sin(alpha)*sin(alpha/2)*sqrt(3-tan(alpha/2)^2)*1e-30;
+        Lattice.Vc=Lattice.a^3*(1-cos(alpha))*sqrt(1+2*cos(alpha));
     otherwise % cubic
         Lattice.LatticeVectors = [1 0 0; 0 1 0; 0 0 1]*Lattice.a;
         Lattice.Vc = (Lattice.a^3)*1e-30;
