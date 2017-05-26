@@ -35,7 +35,7 @@ The probe is the incident beam. It may currently be defined as either 'xrays' or
 With 'Lattice' and 'Probe' defined, one can now run the powder diffraction simulation with the above inputs via the MATLAB command-line:
 
 ```matlab
->> I = Generate_Intensity_2theta(Lattice, Probe)
+>> I = GenerateIntensity2theta(Lattice, Probe)
 ```
 
 ![sample_powder_diffraction.](sample_powder_diffraction.png)
