@@ -17,7 +17,7 @@ Note: The simulation shown above was generated using the script TestScripts/Grap
 
 - Simulating geometrical diffraction patterns such as the one shown below for electron transmission diffraction off a graphite crystal.
 
-![sample_TEM_pattern_C.](sample_pattern_C.png)
+![sample_TEM_pattern_C.](sample_TEM_pattern_C.png)
 
 Note: The simulation shown above was generated using the script Main_Form_GeometricalSimulation_tem.m
 
