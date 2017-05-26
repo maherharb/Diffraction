@@ -1,6 +1,6 @@
 # A Quick Introduction to the Diffraction Library
 
-The diffraction library is a collection of MATLAB scripts for modeling of various diffraction geometries for diffraction of x-rays or electrons from crystals. The library was developed with the Ultrafast Science community in mind, with an emphasis on ease of customization and use. This Quick Intro is targeted towards experienced MATLAB users who wish to quickly learn the key functionalities of the library. It is not intended as an expansive documentation of the library. Further information and examples may be found in the help feature of the respective scripts. The examples below use graphite as the template crystal to showcase the capabilities of the library.
+The diffraction library is a collection of MATLAB scripts for the modeling of various diffraction geometries for diffraction of x-rays or electrons from crystals. The library was developed with the Ultrafast Science community in mind, with an emphasis on ease of customization and use. This Quick Intro is targeted towards experienced MATLAB users who wish to quickly learn the key functionalities of the library. It is not intended as an expansive documentation of the library. Further information and examples may be found in the help feature of the respective scripts. The examples below use graphite as the template crystal to showcase the capabilities of the library.
 
 ## Build lattice structure
 
@@ -78,7 +78,7 @@ This also outputs a table to the command window showcasing the desired diffracti
 
 ## Simulate diffraction pattern in Transmission Election Microscopy.
 
-The library is capable of simulating geometrical patterns such as the one shown below for TEM diffraction off a crystal with the mostly the same structures from the non-coplanar example.
+The library is capable of simulating geometrical patterns such as the one shown below for TEM diffraction off a crystal. This uses mostly the same parameters from the non-coplanar example.
 
 Most notably, the probe structure once again only requires two variables, Type and Energy:
 
