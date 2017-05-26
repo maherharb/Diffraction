@@ -14,12 +14,12 @@ The library currently offers several diffraction scripts corresponding to variou
 >> Lattice.AtomicPositions = [0 0 0 ; 0 0 1/2 ; 1/3 2/3 0 ; 2/3 1/3 1/2];
 ```
 
-Once defined, the user can save the Lattice structure as a MATLAB file so as not to have to redefine it again in the future. This is done by using the save commad in MATLAB:
+Once defined, the user can save the lattice structure as a MATLAB file so as not to have to redefine it again in the future. This is done by using the save commad in MATLAB:
 
 ```matlab
 >> save('graphite_hexagonal.mat', 'Lattice'); 
 ```
-All other Lattice properties, if not defined in the structure file, are automatically calculated by the library (e.g. lattice volume, density, etc).
+All other lattice properties, if not defined in the structure file, are automatically calculated by the library (e.g. lattice volume, density, etc.).
 
 ## Define probe
 
@@ -35,18 +35,18 @@ The probe is the incident beam. It may currently be defined as either 'xrays' or
 With 'Lattice' and 'Probe' defined, one can now run the powder diffraction simulation with the above inputs via the MATLAB command-line:
 
 ```matlab
->> I = GenerateIntensity2theta(Lattice, Probe)
+>> I = GenerateIntensity2theta(Lattice, Probe);
 ```
 
 ![sample_powder_diffraction.](sample_powder_diffraction.png)
 
-This outputs two figures. The first, shown above, is an Intensity vs 2*Theta plot for the given parameters. The second (not shown) is a scatter plot lacking the multiplicity term as to see the individual contributions of a single plane in contrast to the summation of the family of planes.
+GenerateIntensity2theta outputs two figures: The first, shown above, is an Intensity vs. 2theta plot for the given parameters. The second (not shown) is a scatter plot lacking the multiplicity term as to see the individual contributions of a single plane in contrast to the summation of the family of planes.
 
-This also outputs a table to the command window showcasing the desired diffraction information such as the relative intensity, the diffraction angle, and the d-spacing. For the sake of space, the table below is over the hkl range [-2:2]:
+In addition to the figures, the main output (I) is a table that contains the desired diffraction information such as the diffracted peak intensities, the diffraction angles, and the d-spacings. The table below shows information on the diffraction peaks of graphite up to hkl range of 2.
 
 ![sample_powder_table.](sample_powder_table.png)
 
-In addition, the table may also be outputted as a .txt, .xlsx, .xls, .dat, or .csv depending on the end user's preference. 
+In addition, the table may be saved as a .txt, .xlsx, .xls, .dat, or .csv depending on the end user's preference. 
 
 ## Simulate non-coplanar diffraction from crystals with preferred orientation
 
