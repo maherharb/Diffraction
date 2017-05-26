@@ -1,0 +1,2 @@
+Please list here any bugs discovered when using the library, when it appeared, and what script was involved.
+If the bug is related to a material file, please upload that to the master copy as well for testing.

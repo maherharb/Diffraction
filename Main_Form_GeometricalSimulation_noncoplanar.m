@@ -17,9 +17,9 @@ Lattice.Normal = [0 0 1];
 
 % DEFINE X-RAYS
 Probe.Type = 'xrays';
-Probe.Energy = 18000; % [eV]
+Probe.Energy = 20000; % [eV]
 Probe.DiffractionGeometry = 'noncoplanar';
-Probe.psi = 0.2; % This's the grazing angle
+Probe.psi = 0.1; % This's the grazing angle
 
 % DEFINE DETECTOR
 Detector.Shape = 'square';
@@ -33,11 +33,9 @@ Detector.Offset = [0 20]; % offset from center of beam in mm
 hkl = 0:6;
 
 % MAIN FUNCTION
-<<<<<<< HEAD
 [I,Result] = GeometricalSimulation1(Lattice, Probe, Detector, hkl, 1);
-=======
-I = GeometricalSimulation1(Lattice, Probe, Detector, hkl, 1);
->>>>>>> 6782c93d6411b8b534b48b91496751236036f3e9
+
+%I = GeometricalSimulation1(Lattice, Probe, Detector, hkl, 1);
 
 
 
