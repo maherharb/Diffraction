@@ -40,11 +40,7 @@ With 'Lattice' and 'Probe' defined, one can now run the powder diffraction simul
 
 ![sample_powder_diffraction.](sample_powder_diffraction.png)
 
-Note: The simulation shown above was generated using the script Main_Form_Powder_Diffraction.m
-
 This outputs two figures. The first, shown above, is an Intensity vs 2*Theta plot for the given parameters. The second (not shown) is a scatter plot lacking the multiplicity term as to see the individual contributions of a single plane in contrast to the summation of the family of planes.
-
-Powder diffraction may also be simulated via the Main Form for this diffraction type, Main_Form_Powder_Diffraction.m.
 
 This also outputs a table to the command window showcasing the desired diffraction information such as the relative intensity, the diffraction angle, and the d-spacing. For the sake of space, the table below is over the hkl range [-2:2]:
 
@@ -72,11 +68,7 @@ Additional Inputs:
 >> Detector.Offset = [0 20]
 ```
 
-Each of these parameters may be easily changed in the Main form for this diffraction type, Main_Form_GeometricalSimulation_noncoplanar.m
-
 ![sample_xrd_pattern_V2.](sample_xrd_pattern_V2.png)
-
-Note: The simulation shown above was generated using the script TestScripts/Graphite_GeometricalSimulation_noncoplanar.m 
 
 ## Calculate exit angles for non-coplanar diffraction from single-crystals
 
