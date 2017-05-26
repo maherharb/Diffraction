@@ -26,6 +26,7 @@ All other Lattice variables, if not defined in the structure file, are calculate
 The probe is the incident beam. It may currently be defined as either 'xrays' or 'electrons', along with it's Energy. For non-coplanar diffraction, there is also a geometry and grazing angle variable, properly labeled in the main form scripts of their respective diffraction types.
 
 Probe.Type = 'xrays'
+
 Probe.Energy = 8048.3 
 
 ## Generate powder diffraction
@@ -41,16 +42,23 @@ Main_Form_Powder_Diffraction.m outputs two figures. The first, shown above, is a
 The library is capable of simulating geometrical patterns such as the one shown below for grazing incidence x-ray diffraction off a crystal. Here, one sees both the brightness and position of the possible diffraction pattern over a range of miller indices for the given detector parameters of a graphite crystal with a 001 normal.
 
 Additional Inputs:
+
 Lattice.Normal = [0 0 1]
 
 Probe.DiffractionGeometry = 'noncoplanar'
+
 Probe.psi = 0.1
 
 Detector.Shape = 'square' %May be square or circle
+
 Detector.Size = 40 %mm
+
 Detector.SpotFWHMx = 2
+
 Detector.SpotFWHMy = 2
+
 Detector.DistanceToSample = 50 
+
 Detector.Offset = [0 20]
 
 Each of these parameters may be easily changed in the Main form for this diffraction type.
