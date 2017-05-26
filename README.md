@@ -105,6 +105,9 @@ Electrons scatter at much smaller angles than xrays and the detector parameters 
 >> Detector.DistanceToSample = 200 
 >> Detector.Offset = [0 0]
 ```
+
+Next, we may generate the simulated diffraction pattern via the command-line:
+
 ```matlab
 >> I = GeometricalSimulation2(Lattice,Probe,Detector, 0:6,1);
 ```
