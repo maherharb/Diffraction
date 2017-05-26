@@ -14,10 +14,10 @@ The library currently offers several diffraction scripts corresponding to variou
 >> Lattice.AtomicPositions = [0 0 0 ; 0 0 1/2 ; 1/3 2/3 0 ; 2/3 1/3 1/2];
 ```
 
-Once defined, the user can save the Lattice structure as MATLAB file so as not to have to redefine again it in future. This is done by using the save commad in MATLAB:
+Once defined, the user can save the Lattice structure as MATLAB file so as not to have to redefine it again it in future. This is done by using the save commad in MATLAB:
 
 ```matlab
->> save('graphite.mat', 'Lattice'); 
+>> save('graphite_hexagonal.mat', 'Lattice'); 
 ```
 All other Lattice properties, if not defined in the structure file, are automatically calculated by the library (e.g. lattice volume and density).
 
