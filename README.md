@@ -55,6 +55,8 @@ This script is useful for simulating the diffraction pattern for 2D layered stru
 ```matlab
 >> Lattice.Normal = [0 0 1];
 
+>> Probe.Type = 'xrays'
+>> Probe.Energy = 20000
 >> Probe.DiffractionGeometry = 'noncoplanar';
 >> Probe.psi = 0.1;
 
@@ -68,7 +70,7 @@ This script is useful for simulating the diffraction pattern for 2D layered stru
 Next, the function generating the simulated diffraction pattern is called:
 
 ```matlab
->> I = ;
+>> I = GeometricalSimulation1(Lattice,Probe,Detector, 0:6,1);
 ```
 
 The output is a 2D image corresponding to the diffraction pattern on the detector. This is shown below for the above example.    
@@ -103,6 +105,10 @@ Electrons scatter at much smaller angles than xrays and the detector parameters 
 >> Detector.DistanceToSample = 200 
 >> Detector.Offset = [0 0]
 ```
+```matlab
+>> I = GeometricalSimulation2(Lattice,Probe,Detector, 0:6,1);
+```
+
 
 
 
