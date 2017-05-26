@@ -1,4 +1,5 @@
 # A Quick Introduction to the Diffraction Library
+
 The diffraction library is a collection of MATLAB scripts for modeling of various diffraction geometries for diffraction of x-rays or electrons from crystals. The library was developed with the Ultrafast Science community in mind, with an emphasis on ease of customization and use. This Quick Intro is targeted towards experienced MATLAB users who wish to quickly learn the key functionalities of the library. It is not intended as an expansive documentation of the library. Further information and examples may be found in the help feature in most of the scripts. The examples below use graphite as the template crystal to showcase the capabilities of the library.
 
 ## Build lattice structure
