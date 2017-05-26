@@ -1,4 +1,5 @@
 % EXAMPLE SCRIPT TO GENERATE DIFFRACTION PATTERN FROM NONCOPLANAR DIFFRACTION GEOMETRY
+% Last Updated 5/26/17 - Jacob Bolduc
 
 % CLEAN WORKSPACE
 home
@@ -38,11 +39,9 @@ hkl = 6;
 Threshold = 1;
 
 %Resolution between peaks.
+%Defines width of the peak. Decrease to improve resolution.
 Separation = 0.1;
 
 
 % MAIN FUNCTION
 I = Generate_Intensity_2theta(Lattice, Probe,1,hkl,Threshold, Separation)
-
-% For Ocatave Use
-% I = 
