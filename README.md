@@ -50,23 +50,28 @@ In addition, the table may be saved as a .txt, .xlsx, .xls, .dat, or .csv depend
 
 ## Simulate non-coplanar diffraction from crystals with preferred orientation
 
-The library is capable of simulating geometrical patterns such as the one shown below for grazing incidence x-ray diffraction off a crystal. Here, one sees both the brightness and position of the possible diffraction pattern over a range of miller indices given the detector parameters below for a HOPG graphite crystal with a 001 normal.
-
-Additional Inputs:
+This script is useful for simulating the diffraction pattern for 2D layered structures with preferred oreintatin. The template example is HOPG (graphite), in which the sample surface corresponds to the [001] direction, but in-plane, domains are randomly oriented. This example simulated the geometrical diffraction pattern under grazing incidence off a HOPG crystal. Here, one sees both the brightness and positions of the possible diffraction spots over a range of miller indices given the detector parameters. The additional inputs consist of defining the surface normal, specifying that the probe is incident in a non-coplanar geometry at some incidence angle in degrees (psi) relative to the surface, and, finally, specifying the detector properties and various dimensions (in mm):
 
 ```matlab
->> Lattice.Normal = [0 0 1]
+>> Lattice.Normal = [0 0 1];
 
->> Probe.DiffractionGeometry = 'noncoplanar'
->> Probe.psi = 0.1
+>> Probe.DiffractionGeometry = 'noncoplanar';
+>> Probe.psi = 0.1;
 
->> Detector.Shape = 'square' %May be square or circle
->> Detector.Size = 40 %In mm
->> Detector.SpotFWHMx = 2
->> Detector.SpotFWHMy = 2
->> Detector.DistanceToSample = 50 
->> Detector.Offset = [0 20]
+>> Detector.Shape = 'square'; % may be square or circle
+>> Detector.Size = 40;
+>> Detector.SpotFWHMx = 2;
+>> Detector.SpotFWHMy = 2;
+>> Detector.DistanceToSample = 50;
+>> Detector.Offset = [0 20];
 ```
+Next, the function generating the simulated diffraction pattern is called:
+
+```matlab
+>> I = ;
+```
+
+The output is a 2D image corresponding to the diffraction pattern on the detector. This is shown below for the above example.    
 
 ![sample_xrd_pattern_V2.](sample_xrd_pattern_V2.png)
 
@@ -98,6 +103,8 @@ Electrons scatter at much smaller angles than xrays and the detector parameters 
 >> Detector.DistanceToSample = 200 
 >> Detector.Offset = [0 0]
 ```
+
+
 
 ![sample_TEM_pattern_C.](sample_TEM_pattern_C.png)
 
