@@ -14,12 +14,12 @@ The library currently offers several diffraction scripts corresponding to variou
 >> Lattice.AtomicPositions = [0 0 0 ; 0 0 1/2 ; 1/3 2/3 0 ; 2/3 1/3 1/2];
 ```
 
-Once defined, the user can save the Lattice structure as a MATLAB file so as not to have to redefine it again in the future. This is done by using the save commad in MATLAB:
+Once defined, the user can save the lattice structure as a MATLAB file so as not to have to redefine it again in the future. This is done by using the save commad in MATLAB:
 
 ```matlab
 >> save('graphite_hexagonal.mat', 'Lattice'); 
 ```
-All other Lattice properties, if not defined in the structure file, are automatically calculated by the library (e.g. lattice volume, density, etc).
+All other lattice properties, if not defined in the structure file, are automatically calculated by the library (e.g. lattice volume, density, etc.).
 
 ## Define probe
 
@@ -35,38 +35,45 @@ The probe is the incident beam. It may currently be defined as either 'xrays' or
 With 'Lattice' and 'Probe' defined, one can now run the powder diffraction simulation with the above inputs via the MATLAB command-line:
 
 ```matlab
->> I = GenerateIntensity2theta(Lattice, Probe)
+>> I = GenerateIntensity2theta(Lattice, Probe);
 ```
 
 ![sample_powder_diffraction.](sample_powder_diffraction.png)
 
-This outputs two figures. The first, shown above, is an Intensity vs 2*Theta plot for the given parameters. The second (not shown) is a scatter plot lacking the multiplicity term as to see the individual contributions of a single plane in contrast to the summation of the family of planes.
+GenerateIntensity2theta outputs two figures: The first, shown above, is an Intensity vs. 2theta plot for the given parameters. The second (not shown) is a scatter plot lacking the multiplicity term as to see the individual contributions of a single plane in contrast to the summation of the family of planes.
 
-This also outputs a table to the command window showcasing the desired diffraction information such as the relative intensity, the diffraction angle, and the d-spacing. For the sake of space, the table below is over the hkl range [-2:2]:
+In addition to the figures, the main output (I) is a table that contains the desired diffraction information such as the diffracted peak intensities, the diffraction angles, and the d-spacings. The table below shows information on the diffraction peaks of graphite up to hkl range of 2.
 
 ![sample_powder_table.](sample_powder_table.png)
 
-In addition, the table may also be outputted as a .txt, .xlsx, .xls, .dat, or .csv depending on the end user's preference. 
+In addition, the table may be saved as a .txt, .xlsx, .xls, .dat, or .csv depending on the end user's preference. 
 
 ## Simulate non-coplanar diffraction from crystals with preferred orientation
 
-The library is capable of simulating geometrical patterns such as the one shown below for grazing incidence x-ray diffraction off a crystal. Here, one sees both the brightness and position of the possible diffraction pattern over a range of miller indices given the detector parameters below for a HOPG graphite crystal with a 001 normal.
-
-Additional Inputs:
+This script is useful for simulating the diffraction pattern for 2D layered structures with preferred orientation. The template example is HOPG (graphite), in which the sample surface corresponds to the [001] direction, but in-plane, domains are randomly oriented. This example simulated the geometrical diffraction pattern under grazing incidence off a HOPG crystal. Here, one sees both the brightness and positions of the possible diffraction spots over a range of miller indices given the detector parameters. The additional inputs consist of defining the surface normal, specifying that the probe is incident in a non-coplanar geometry at some incidence angle in degrees (psi) relative to the surface, and, finally, specifying the detector properties and various dimensions (in mm):
 
 ```matlab
->> Lattice.Normal = [0 0 1]
+>> Lattice.Normal = [0 0 1];
 
->> Probe.DiffractionGeometry = 'noncoplanar'
->> Probe.psi = 0.1
+>> Probe.Type = 'xrays'
+>> Probe.Energy = 20000
+>> Probe.DiffractionGeometry = 'noncoplanar';
+>> Probe.psi = 0.1;
 
->> Detector.Shape = 'square' %May be square or circle
->> Detector.Size = 40 %In mm
->> Detector.SpotFWHMx = 2
->> Detector.SpotFWHMy = 2
->> Detector.DistanceToSample = 50 
->> Detector.Offset = [0 20]
+>> Detector.Shape = 'square'; % may be square or circle
+>> Detector.Size = 40;
+>> Detector.SpotFWHMx = 2;
+>> Detector.SpotFWHMy = 2;
+>> Detector.DistanceToSample = 50;
+>> Detector.Offset = [0 20];
 ```
+Next, the function generating the simulated diffraction pattern is called:
+
+```matlab
+>> I = GeometricalSimulation1(Lattice,Probe,Detector, 0:6,1);
+```
+
+The output is a 2D image corresponding to the diffraction pattern on the detector. This is shown below for the above example.    
 
 ![sample_xrd_pattern_V2.](sample_xrd_pattern_V2.png)
 
@@ -78,7 +85,7 @@ This also outputs a table to the command window showcasing the desired diffracti
 
 ## Simulate diffraction pattern in Transmission Election Microscopy.
 
-The library is capable of simulating geometrical patterns such as the one shown below for TEM diffraction off a crystal. This uses mostly the same parameters from the non-coplanar example.
+The library is also capable of simulating geometrical patterns such as the one shown below for TEM diffraction off a crystal. This uses mostly the same parameters from the non-coplanar example.
 
 Most notably, the probe structure once again only requires two variables, Type and Energy:
 
@@ -89,7 +96,7 @@ Most notably, the probe structure once again only requires two variables, Type a
 >> Probe.Energy = 60000;
 ```
 
-Electrons scatter at much smaller angles than xrays and the detector parameters must be adjusted accordingly:
+And as electrons scatter at much smaller angles than xrays and the detector parameters must be adjusted accordingly:
 ```matlab
 >> Detector.Shape = 'square' 
 >> Detector.Size = 16  
@@ -97,6 +104,12 @@ Electrons scatter at much smaller angles than xrays and the detector parameters 
 >> Detector.SpotFWHMy = 0.3
 >> Detector.DistanceToSample = 200 
 >> Detector.Offset = [0 0]
+```
+
+Next, we may generate the simulated diffraction pattern via the command-line:
+
+```matlab
+>> I = GeometricalSimulation2(Lattice,Probe,Detector, 0:6,1);
 ```
 
 ![sample_TEM_pattern_C.](sample_TEM_pattern_C.png)
