@@ -50,7 +50,7 @@ In addition, the table may be saved as a .txt, .xlsx, .xls, .dat, or .csv depend
 
 ## Simulate non-coplanar diffraction from crystals with preferred orientation
 
-This script is useful for simulating the diffraction pattern for 2D layered structures with preferred oreintatin. The template example is HOPG (graphite), in which the sample surface corresponds to the [001] direction, but in-plane, domains are randomly oriented. This example simulated the geometrical diffraction pattern under grazing incidence off a HOPG crystal. Here, one sees both the brightness and positions of the possible diffraction spots over a range of miller indices given the detector parameters. The additional inputs consist of defining the surface normal, specifying that the probe is incident in a non-coplanar geometry at some incidence angle in degrees (psi) relative to the surface, and, finally, specifying the detector properties and various dimensions (in mm):
+This script is useful for simulating the diffraction pattern for 2D layered structures with preferred orientation. The template example is HOPG (graphite), in which the sample surface corresponds to the [001] direction, but in-plane, domains are randomly oriented. This example simulated the geometrical diffraction pattern under grazing incidence off a HOPG crystal. Here, one sees both the brightness and positions of the possible diffraction spots over a range of miller indices given the detector parameters. The additional inputs consist of defining the surface normal, specifying that the probe is incident in a non-coplanar geometry at some incidence angle in degrees (psi) relative to the surface, and, finally, specifying the detector properties and various dimensions (in mm):
 
 ```matlab
 >> Lattice.Normal = [0 0 1];
@@ -85,7 +85,7 @@ This also outputs a table to the command window showcasing the desired diffracti
 
 ## Simulate diffraction pattern in Transmission Election Microscopy.
 
-The library is capable of simulating geometrical patterns such as the one shown below for TEM diffraction off a crystal. This uses mostly the same parameters from the non-coplanar example.
+The library is also capable of simulating geometrical patterns such as the one shown below for TEM diffraction off a crystal. This uses mostly the same parameters from the non-coplanar example.
 
 Most notably, the probe structure once again only requires two variables, Type and Energy:
 
@@ -96,7 +96,7 @@ Most notably, the probe structure once again only requires two variables, Type a
 >> Probe.Energy = 60000;
 ```
 
-Electrons scatter at much smaller angles than xrays and the detector parameters must be adjusted accordingly:
+And as electrons scatter at much smaller angles than xrays and the detector parameters must be adjusted accordingly:
 ```matlab
 >> Detector.Shape = 'square' 
 >> Detector.Size = 16  
@@ -111,9 +111,6 @@ Next, we may generate the simulated diffraction pattern via the command-line:
 ```matlab
 >> I = GeometricalSimulation2(Lattice,Probe,Detector, 0:6,1);
 ```
-
-
-
 
 ![sample_TEM_pattern_C.](sample_TEM_pattern_C.png)
 
