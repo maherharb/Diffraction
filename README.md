@@ -4,23 +4,22 @@ The diffraction library is a collection of MATLAB scripts for modeling of variou
 
 ## Build lattice structure
 
-The library currently offers Main Form scripts each major diffraction type currently offered. The minimum neccessary to run a diffraction script is a properly defined lattice structure, probe structure, and (excluding powder diffraction) detector structure and each outputs the desired diffraction information as a table in the Command Window, with the additional option to output the table in a .txt, .xlsx, .xls, .dat, or .csv file for post-simulation data processing.
+The library currently offers several diffraction scripts corresponding to various diffraction geometries. The minimum neccessary to run a diffraction script is a properly defined lattice structure and a probe (x-rays or electrons). A lattice is constructed by defining the molecular symbol, the lattice system type, the corresponding lattice constants, and the positions of atoms in the lattice (in the reference frame of the lattice system coordinate). The following example shows how to define graphite:
 
-The following is needed to define graphite:
+```matlab
+>> Lattice.Symbol = 'C';   
+>> Lattice.Type = 'hexagonal'; 
+>> Lattice.a = 2.4560;
+>> Lattice.c = 6.6960;
+>> Lattice.AtomicPositions = [0 0 0 ; 0 0 1/2 ; 1/3 2/3 0 ; 2/3 1/3 1/2];
+```
 
->> Lattice.Symbol = 'C'   
+Once defined, the user can save the Lattice structure as MATLAB file so as not to have to redefine again it in future. This is done by using the save commad in MATLAB:
 
->> Lattice.Type = 'hexagonal' 
-
->> Lattice.a = 2.4560
-
->> Lattice.c = 6.6960
-
->> Lattice.AtomicPositions = [0 0 0 ; 0 0 1/2 ; 1/3 2/3 0 ; 2/3 1/3 1/2] 
-
->> save('graphite.mat', 'Lattice') 
-
-All other Lattice variables, if not defined in the structure file, are calculated by the library.
+```matlab
+>> save('graphite.mat', 'Lattice'); 
+```
+All other Lattice properties, if not defined in the structure file, are automatically calculated by the library (e.g. lattice volume and density).
 
 ## Define probe
 
