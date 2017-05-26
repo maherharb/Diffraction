@@ -44,4 +44,4 @@ Separation = 0.1;
 
 
 % MAIN FUNCTION
-I = Generate_Intensity_2theta(Lattice, Probe,1,hkl,Threshold, Separation)
+I = GenerateIntensity2theta(Lattice, Probe,1,hkl,Threshold, Separation)
