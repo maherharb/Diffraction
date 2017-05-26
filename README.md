@@ -6,14 +6,21 @@ The diffraction library is a collection of MATLAB scripts for modeling of variou
 The library currently offers Main Form scripts each major diffraction type currently offered. The minimum neccessary to run a diffraction script is a properly defined lattice structure, probe structure, and (excluding powder diffraction) detector structure and each outputs the desired diffraction information as a table in the Command Window, with the adittional option to output the table in a .txt, .xlsx, .xls, .dat, or .csv file for post-simulation data processing.
 
 The following is what is needed to define graphite:
+
 Lattice.Symbol = 'C'   % The program will parse through this variable to any other elements
+
 Lattice.Type = 'hexagonal' % The amount of information needed depends on the Lattice Type. For hexagonal, we only need the a and c lengths.
+
 Lattice.a = 2.4560
+
 Lattice.c = 6.6960
+
 Lattice.AtomicPositions = [0 0 0 ; 0 0 1/2 ; 1/3 2/3 0 ; 2/3 1/3 1/2] %The Atomic Positions in the unit cell.
+
 save('graphite.mat', 'Lattice') %Saving the above as graphite.mat
 
 All other Lattice variables, if not defined in the structure file, are calculated by the library.
+
 ## Define probe
 
 The probe is the incident beam. It may currently be defined as either 'xrays' or 'electrons', along with it's Energy. For non-coplanar diffraction, there is also a geometry and grazing angle variable, properly labeled in the main form scripts of their respective diffraction types.
