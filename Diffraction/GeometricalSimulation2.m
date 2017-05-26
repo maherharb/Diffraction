@@ -18,6 +18,7 @@ PixelsPerUnit = size(I,1)/Detector.Size;
 dy = 0 ;
 
 
+
 %Detector Shape check. If no shape was ever given in the main form, the
 %variable defaults to square.
 if isfield(Detector,'Shape')==0  % default
@@ -98,8 +99,8 @@ for k = hkl_space
                                 
                                 I = CreateSpot(I, pix_c-Detector.Offset(1)*PixelsPerUnit, pix_r-Detector.Offset(2)*PixelsPerUnit, Detector.SpotFWHMx*PixelsPerUnit, Detector.SpotFWHMy*PixelsPerUnit, sqrt(SF.Intensity), -atan(x/y)*180/pi);
                                 
-                                text(x-Detector.Offset(1),y-Detector.Offset(2),strcat([num2str(h), num2str(k), num2str(l)]));
-                                text(-x-Detector.Offset(1),y-Detector.Offset(2),strcat([num2str(h), num2str(k), num2str(l)]));
+%                                 text(x-Detector.Offset(1),y-Detector.Offset(2),strcat([num2str(h), num2str(k), num2str(l)]));
+                                text(-x-Detector.Offset(1),y-Detector.Offset(2),strcat([num2str(h), num2str(k), num2str(l)]),'FontSize',12);
                                 %    else
                                 %        % [x y]
                                 %    end
