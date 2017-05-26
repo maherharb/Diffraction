@@ -3,21 +3,21 @@ The diffraction library is a collection of MATLAB scripts for modeling of variou
 
 ## Build lattice structure
 
-The library currently offers Main Form scripts each major diffraction type currently offered. The minimum neccessary to run a diffraction script is a properly defined lattice structure, probe structure, and (excluding powder diffraction) detector structure and each outputs the desired diffraction information as a table in the Command Window, with the adittional option to output the table in a .txt, .xlsx, .xls, .dat, or .csv file for post-simulation data processing.
+The library currently offers Main Form scripts each major diffraction type currently offered. The minimum neccessary to run a diffraction script is a properly defined lattice structure, probe structure, and (excluding powder diffraction) detector structure and each outputs the desired diffraction information as a table in the Command Window, with the additional option to output the table in a .txt, .xlsx, .xls, .dat, or .csv file for post-simulation data processing.
 
-The following is what is needed to define graphite:
+The following is needed to define graphite:
 
-Lattice.Symbol = 'C'   % The program will parse through this variable to any other elements
+>> Lattice.Symbol = 'C'   
 
-Lattice.Type = 'hexagonal' % The amount of information needed depends on the Lattice Type. For hexagonal, we only need the a and c lengths.
+>> Lattice.Type = 'hexagonal' 
 
-Lattice.a = 2.4560
+>> Lattice.a = 2.4560
 
-Lattice.c = 6.6960
+>> Lattice.c = 6.6960
 
-Lattice.AtomicPositions = [0 0 0 ; 0 0 1/2 ; 1/3 2/3 0 ; 2/3 1/3 1/2] %The Atomic Positions in the unit cell.
+>> Lattice.AtomicPositions = [0 0 0 ; 0 0 1/2 ; 1/3 2/3 0 ; 2/3 1/3 1/2] 
 
-save('graphite.mat', 'Lattice') %Saving the above as graphite.mat
+>> save('graphite.mat', 'Lattice') 
 
 All other Lattice variables, if not defined in the structure file, are calculated by the library.
 
@@ -25,9 +25,9 @@ All other Lattice variables, if not defined in the structure file, are calculate
 
 The probe is the incident beam. It may currently be defined as either 'xrays' or 'electrons', along with it's Energy. For non-coplanar diffraction, there is also a geometry and grazing angle variable, properly labeled in the main form scripts of their respective diffraction types.
 
-Probe.Type = 'xrays'
+>> Probe.Type = 'xrays'
 
-Probe.Energy = 8048.3 
+>> Probe.Energy = 8048.3 
 
 ## Generate powder diffraction
 
@@ -43,23 +43,23 @@ The library is capable of simulating geometrical patterns such as the one shown 
 
 Additional Inputs:
 
-Lattice.Normal = [0 0 1]
+>> Lattice.Normal = [0 0 1]
 
-Probe.DiffractionGeometry = 'noncoplanar'
+>> Probe.DiffractionGeometry = 'noncoplanar'
 
-Probe.psi = 0.1
+>> Probe.psi = 0.1
 
-Detector.Shape = 'square' %May be square or circle
+>> Detector.Shape = 'square' %May be square or circle
 
-Detector.Size = 40 %mm
+>> Detector.Size = 40 %mm
 
-Detector.SpotFWHMx = 2
+>> Detector.SpotFWHMx = 2
 
-Detector.SpotFWHMy = 2
+>> Detector.SpotFWHMy = 2
 
-Detector.DistanceToSample = 50 
+>> Detector.DistanceToSample = 50 
 
-Detector.Offset = [0 20]
+>> Detector.Offset = [0 20]
 
 Each of these parameters may be easily changed in the Main form for this diffraction type.
 
@@ -75,7 +75,7 @@ Note: The simulation shown above was generated using the script TestScripts/Grap
 
 The library is capable of simulating geometrical patterns such as the one shown below for TEM diffraction off a crystal with the same structures from the non-coplanar example, with the following major change:
 
-Probe.Type = 'electrons'
+>> Probe.Type = 'electrons'
 
 ![sample_TEM_pattern_C.](sample_TEM_pattern_C.png)
 
