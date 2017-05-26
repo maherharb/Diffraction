@@ -1,6 +1,6 @@
 # A Quick Introduction to the Diffraction Library
 
-The diffraction library is a collection of MATLAB scripts for modeling of various diffraction geometries for diffraction of x-rays or electrons from crystals. The library was developed with the Ultrafast Science community in mind, with an emphasis on ease of customization and use. This Quick Intro is targeted towards experienced MATLAB users who wish to quickly learn the key functionalities of the library. It is not intended as an expansive documentation of the library. Further information and examples may be found in the help feature in most of the scripts. The examples below use graphite as the template crystal to showcase the capabilities of the library.
+The diffraction library is a collection of MATLAB scripts for modeling of various diffraction geometries for diffraction of x-rays or electrons from crystals. The library was developed with the Ultrafast Science community in mind, with an emphasis on ease of customization and use. This Quick Intro is targeted towards experienced MATLAB users who wish to quickly learn the key functionalities of the library. It is not intended as an expansive documentation of the library. Further information and examples may be found in the help feature of the respective scripts. The examples below use graphite as the template crystal to showcase the capabilities of the library.
 
 ## Build lattice structure
 
@@ -14,7 +14,7 @@ The library currently offers several diffraction scripts corresponding to variou
 >> Lattice.AtomicPositions = [0 0 0 ; 0 0 1/2 ; 1/3 2/3 0 ; 2/3 1/3 1/2];
 ```
 
-Once defined, the user can save the Lattice structure as a MATLAB file so as not to have to redefine it again in future. This is done by using the save commad in MATLAB:
+Once defined, the user can save the Lattice structure as a MATLAB file so as not to have to redefine it again in the future. This is done by using the save commad in MATLAB:
 
 ```matlab
 >> save('graphite_hexagonal.mat', 'Lattice'); 
@@ -23,21 +23,20 @@ All other Lattice properties, if not defined in the structure file, are automati
 
 ## Define probe
 
-The probe is the incident beam. It may currently be defined as either 'xrays' or 'electrons', along with it's Energy. For non-coplanar diffraction, there is also a geometry and grazing angle variable, properly labeled in the main form scripts of their respective diffraction types. For powder diffraction, only two parameters are required:
+The probe is the incident beam. It may currently be defined as either 'xrays' or 'electrons', along with its Energy (in eV). For non-coplanar diffraction, there are additional parameters on the geometry of the incident beam (to be described later). For powder diffraction, only two parameters are required as shown here:
 
 ```matlab
->> Probe.Type = 'xrays'
->> Probe.Energy = 8048.3 
+>> Probe.Type = 'xrays';
+>> Probe.Energy = 8048.3;
 ```
 
-## Generate powder diffraction
+## Generate powder diffraction profile
 
-Lastly, one can run the powder diffraction simulation with the above inputs via the command:
+With 'Lattice' and 'Probe' defined, one can now run the powder diffraction simulation with the above inputs via the MATLAB command-line:
 
 ```matlab
->> Generate_Intensity_2theta(Lattice,Probe)
+>> Generate_Intensity_2theta(Lattice, Probe);
 ```
-
 
 ![sample_powder_diffraction.](sample_powder_diffraction.png)
 
