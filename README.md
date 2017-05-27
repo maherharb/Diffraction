@@ -40,9 +40,9 @@ With 'Lattice' and 'Probe' defined, one can now run the powder diffraction simul
 
 ![sample_powder_diffraction.](sample_powder_diffraction.png)
 
-GenerateIntensity2theta outputs two figures: The first, shown above, is an Intensity vs. 2theta plot for the given parameters. The second (not shown) is a scatter plot lacking the multiplicity term as to see the individual contributions of a single plane in contrast to the summation of the family of planes.
+GenerateIntensity2theta outputs two figures: The first, shown above, is an Intensity vs. 2theta plot for the given parameters. The second (not shown) is a scatter plot lacking the multiplicity term as to highlight the individual contributions of a single plane in contrast to the summation of intensity across the family of planes.
 
-In addition to the figures, the main output (I) is a table that contains the desired diffraction information such as the diffracted peak intensities, the diffraction angles, and the d-spacings. The table below shows information on the diffraction peaks of graphite up to hkl range of 2.
+In addition to the figures, the main output (I) is a table that contains the desired diffraction information such as the diffracted peak intensities, the diffraction angles, the scattering vectors, and the d-spacings. The table below shows information on the diffraction peaks of graphite up to hkl range of 2.
 
 ![sample_powder_table.](sample_powder_table.png)
 
@@ -50,7 +50,7 @@ In addition, the table may be saved as a .txt, .xlsx, .xls, .dat, or .csv depend
 
 ## Simulate non-coplanar diffraction from crystals with preferred orientation
 
-This script is useful for simulating the diffraction pattern for 2D layered structures with preferred orientation. The template example is HOPG (graphite), in which the sample surface corresponds to the [001] direction, but in-plane, domains are randomly oriented. This example simulated the geometrical diffraction pattern under grazing incidence off a HOPG crystal. Here, one sees both the brightness and positions of the possible diffraction spots over a range of miller indices given the detector parameters. The additional inputs consist of defining the surface normal, specifying that the probe is incident in a non-coplanar geometry at some incidence angle in degrees (psi) relative to the surface, and, finally, specifying the detector properties and various dimensions (in mm):
+This script is useful for simulating the diffraction pattern for 2D layered structures with preferred orientation. The template example is HOPG (graphite), in which the sample surface corresponds to the [001] direction, but in-plane, domains are randomly oriented. The example below is a simulation of the geometrical diffraction pattern under grazing incidence off a HOPG crystal. Here, one sees both the brightness and positions of the possible diffraction spots over a range of miller indices for a given the detector parameters. The additional inputs consist of defining the surface normal, specifying that the probe is incident in a non-coplanar geometry at some incidence angle (psi) in degrees relative to the surface, and, finally, specifying the detector properties and dimensions (in mm):
 
 ```matlab
 >> Lattice.Normal = [0 0 1];
@@ -60,7 +60,7 @@ This script is useful for simulating the diffraction pattern for 2D layered stru
 >> Probe.DiffractionGeometry = 'noncoplanar';
 >> Probe.psi = 0.1;
 
->> Detector.Shape = 'square'; % may be square or circle
+>> Detector.Shape = 'square';
 >> Detector.Size = 40;
 >> Detector.SpotFWHMx = 2;
 >> Detector.SpotFWHMy = 2;
@@ -70,7 +70,7 @@ This script is useful for simulating the diffraction pattern for 2D layered stru
 Next, the function generating the simulated diffraction pattern is called:
 
 ```matlab
->> I = GeometricalSimulation1(Lattice,Probe,Detector, 0:6,1);
+>> I = GeometricalSimulation1(Lattice, Probe, Detector, 0:6, 1);
 ```
 
 The output is a 2D image corresponding to the diffraction pattern on the detector. This is shown below for the above example.    
@@ -115,9 +115,13 @@ Next, we may generate the simulated diffraction pattern via the command-line:
 ![sample_TEM_pattern_C.](sample_TEM_pattern_C.png)
 
 ## Visualize the lattice structure
-As a diagnostic tool, one may also generates a 3D rendering of an inputted lattice structure such as the one shown below for a sodium cloride crystal. 
+As a diagnostic tool, one may also generates a 3D rendering of a lattice structure such as the one shown below for sodium cloride: 
+
+```matlab
+>> Lattice.Symbol = 'NaCl';
+>> Lattice.Type = 'cubic';
+```
 
 ![sample_VisualizeCrystal_NaCl.](sample_VisualizeCrystal_NaCl.png)
 
-Note: The model shown above was generated using the script Diffraction/VisualizeCrystal.m
 
