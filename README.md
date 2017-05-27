@@ -115,7 +115,7 @@ Next, we may generate the simulated diffraction pattern via the command-line:
 ![sample_TEM_pattern_C.](sample_TEM_pattern_C.png)
 
 ## Visualize the lattice structure
-As a diagnostic tool, one may also generates a 3D rendering of a lattice structure such as the one shown below for sodium cloride: 
+As a diagnostic tool, one may also generate a 3D rendering of a lattice structure such as the one shown below for sodium cloride: 
 
 ```matlab
 >> Lattice.Symbol = 'NaCl';
