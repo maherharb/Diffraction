@@ -103,15 +103,15 @@ This script is used for simulating geometrical pattern for electron diffraction 
 >> load('graphite_hexagonal.mat');
 >> Lattice.Normal = [0 0 1];
 
->> Probe.Type = 'electrons'
+>> Probe.Type = 'electrons';
 >> Probe.Energy = 60000;
 
->> Detector.Shape = 'square' 
->> Detector.Size = 16  
->> Detector.SpotFWHMx = 0.3
->> Detector.SpotFWHMy = 0.3
->> Detector.DistanceToSample = 200 
->> Detector.Offset = [0 0]
+>> Detector.Shape = 'square'; 
+>> Detector.Size = 16;  
+>> Detector.SpotFWHMx = 0.3;
+>> Detector.SpotFWHMy = 0.3;
+>> Detector.DistanceToSample = 200; 
+>> Detector.Offset = [0 0];
 ```
 
 Next, the function generating the simulated diffraction pattern is called:
