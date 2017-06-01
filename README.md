@@ -80,18 +80,7 @@ The output, I, is a 2D image corresponding to the diffraction pattern on the det
 
 ## Calculate exit angles for noncoplanar diffraction from single-crystals
 
-This script is similar to the previous one, expect that, rather than a simulated diffraction pattern, the main output is a table listing useful diffraction information on the noncoplanar geometry. This information includes the incident and reflected angles both azimuthally and relative to the sample surface. An example of calling this function is shown below (because of the limited space, only a snippet of the table for miller indices range up to 6 is included).
-
-```matlab
->> load('graphite_hexagonal.mat');
->> Lattice.Normal = [0 0 1];
-
->> Probe.Type = 'xrays';
->> Probe.Energy = 20000;
->> Probe.DiffractionGeometry = 'noncoplanar';
->> Probe.psi = 0.1;
->> I = ??;
-```
+In addition to the simulated diffraction pattern, the noncoplanar script outputs a table listing useful diffraction information on the noncoplanar geometry. This information includes the incident and reflected angles both azimuthally and relative to the sample surface. An example of calling this function is shown below (because of the limited space, only a snippet of the table for miller indices range up to 6 is included).
 
 ![sample_noncoplanar_table.](sample_noncoplanar_table.png)
 
@@ -128,7 +117,11 @@ As a diagnostic tool, one may also generate a 3D rendering of a lattice structur
 ```matlab
 >> Lattice.Symbol = 'NaCl';
 >> Lattice.Type = 'cubic';
->> ... continue here
+>> Lattice.a = 5.6402;
+>> Lattice.AtomicTypes = [1,1,1,1,2,2,2,2]
+>> AtomicPositions = [ 0 0 0 ; 1/2 1/2 0 ; 1/2 0 1/2 ; 0 1/2 1/2 ; 1/2 1/2 1/2 ; 0 0 1/2 ; 0 1/2 0 ; 1/2 0 0 ]
+
+>> VisualizeCrystal(Lattice)
 ```
 
 ![sample_VisualizeCrystal_NaCl.](sample_VisualizeCrystal_NaCl.png)
