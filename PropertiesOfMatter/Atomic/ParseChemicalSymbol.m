@@ -4,7 +4,7 @@
 % [Z N] = PARSECHEMICALSYMBOL(SYMBOL)
 %       SYMBOL: (string) Chemical formula of the molecule
 %            Z: (integer) An array of the atomic numbers for the elements found in the molecule
-%            N: (integer) An array of the numbner of atoms for each element found in the molecule
+%            N: (integer) An array of the nubmer of atoms for each element found in the molecule
 %
 % Note that SYMBOL is case sensitive. For instance, the symbol of silicon
 % is Si, whereas SI is considered invalid because it is ambiguous.
@@ -20,7 +20,7 @@
 function [Z N] = ParseChemicalSymbol(Symbol)
 
 
-Z = []; % atmic numbers
+Z = []; % atomic numbers
 N = []; % weights
 
 element = Symbol(1);
