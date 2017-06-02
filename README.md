@@ -86,7 +86,7 @@ In addition to the simulated diffraction pattern, the noncoplanar script outputs
 
 ## Simulate diffraction pattern in Transmission Election Microscopy.
 
-This script is used for simulating geometrical pattern for electron diffraction in a transmission geometry as shown below. TThe syntax is very similar to the noncoplanar geometry.
+This script is used for simulating geometrical pattern for electron diffraction in a transmission geometry as shown below. The syntax is very similar to the noncoplanar geometry.
 
 ```matlab
 >> load('graphite_hexagonal.mat');
