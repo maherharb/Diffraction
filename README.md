@@ -46,7 +46,7 @@ In addition to these figures, the main output is a table that contains useful di
 
 ```matlab
 >> I 
-I = 
+ 
     h    k     l    BraggAngle    TwoTheta    Intensity    RelativeIntensity       d         Q          S       m 
     0     0    2    13.301        26.602       21066           100                3.348    1.8767    0.29869     2
     1     0    0    21.232        42.463      744.99        3.5364                2.127    2.9541    0.47015     6
